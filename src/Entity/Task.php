@@ -33,6 +33,10 @@ class Task
 
     #[ORM\Column]
     private ?bool $checked = null;
+    
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tasks')]
+    #[ORM\Column]
+    private ?int $User = null;
 
 
         // getters, setters
@@ -113,4 +117,19 @@ class Task
 
         return $this;
     }
+
+    public function getUser(): ?int
+    {
+        return $this->User;
+    }
+
+    public function setUser(int $User): static
+    {
+        $this->User = $User;
+
+        return $this;
+    }
+
+
 }
+
